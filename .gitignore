@@ -162,6 +162,7 @@ cython_debug/
 # RTD info
 rtd_inventory/
 buses
+out/
 
 # Config
 config.yaml
