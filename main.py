@@ -2,6 +2,7 @@ import argparse
 import csv
 import datetime
 import os
+from zipfile import ZipFile
 
 import requests
 import proto.gtfs_realtime_pb2 as pb
@@ -195,10 +196,24 @@ def write_csv(data: list[list]) -> None:
         writer = csv.writer(file)
         writer.writerows(data)
 
+def check_inventory(config: Config):
+    if not os.path.exists("rtd_inventory"):
+        os.makedirs("rtd_inventory")
+        print("Downloading GTFS data...")
+        response = requests.get(config.rtd_urls.gtfs)
+        zip_file_path = os.path.join("rtd_inventory", "google_transit.zip")
+        with open(zip_file_path, "wb") as file:
+            file.write(response.content)
+        with ZipFile(zip_file_path, "r") as zip_file:
+            zip_file.extractall("rtd_inventory")
+        os.remove(zip_file_path)
+
+
 def main() -> None:
     """Main entry point"""
 
     config = load_config()
+    check_inventory(config)
     #args = parse_args()
     #route_id = args.route_id
     #stop_id = args.stop_id
