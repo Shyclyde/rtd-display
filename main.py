@@ -155,7 +155,10 @@ def get_remaining_time(date: datetime.datetime) -> str:
     """Returns a string of the remaining time until the given date."""
 
     now = datetime.datetime.now()
-    return int((date - now).total_seconds() / 60)
+    minutes = int((date - now).total_seconds() / 60)
+    if minutes > 60:
+        return f"{minutes // 60}h"
+    return f"{minutes}m"
 
 
 def get_remaining_time_text(date: datetime.datetime) -> str:
