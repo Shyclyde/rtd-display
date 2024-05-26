@@ -1,6 +1,7 @@
 import argparse
 import csv
 import datetime
+import os
 
 import requests
 import proto.gtfs_realtime_pb2 as pb
@@ -187,7 +188,10 @@ def parse_args():
 def write_csv(data: list[list]) -> None:
     """Writes the given data to a CSV file"""
 
-    with open("buses", "w", encoding="UTF-8") as file:
+    if not os.path.exists("out"):
+        os.makedirs("out")
+
+    with open("out/buses", "w", encoding="UTF-8") as file:
         writer = csv.writer(file)
         writer.writerows(data)
 
