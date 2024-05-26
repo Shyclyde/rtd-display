@@ -1,0 +1,38 @@
+rtd_urls:
+  gtfs: "https://www.rtd-denver.com/files/gtfs/google_transit.zip"
+  trip_update: "https://www.rtd-denver.com/files/gtfs-rt/TripUpdate.pb"
+  vehicle_position: "https://www.rtd-denver.com/files/gtfs-rt/VehiclePosition.pb"
+  alerts: "https://www.rtd-denver.com/files/gtfs-rt/Alerts.pb"
+
+# These calendars from from the "calendar.txt" file in the GTFS feed
+# For now, they're manually updated when the feed changes
+day_schedules:
+  monday_to_thursday:
+    - MT_merged_115031401
+    - WK_merged_115031399
+  friday:
+    - FR_merged_115031397
+    - WK_merged_115031399
+  saturday:
+    - SA_merged_115031403
+  sunday:
+    - SU_merged_115031400
+
+buses:
+  - num: "1"
+    dir1: 
+      short: "w"
+      stop: "12345"
+    dir2:
+      short: "e"
+      stop: "12345"
+  - num: "15L"
+    dir1: 
+      short: "e"
+      stop: "12345"
+    dir2: 
+      short: "w"
+      stop: "12345"
+  # - "15L":
+  #   - 0: 12913
+  #   - 1: 13019
